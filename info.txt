@@ -1,0 +1,25 @@
+What is "blockchain"?
+
+Blockchain is a way of storing digital data. The data can literally be anything. For Bitcoin, it's the transactions (transfers of Bitcoin from one account to another account), but it can even be files; it doesn't matter. The data is stored in the form of blocks, which are chained together using hashes. Hence the name "blockchain."
+
+All of the magic lies in the way this data is added and stored in the blockchain, which yields some highly desirable characteristics:
+
+    Immutability of history
+    Un-hackability of the system
+    Persistence of the data
+    No single point of failure
+
+A hash function is a function that takes data of any size and produces data of a fixed size from it, which generally works to identify the input.
+
+The very first block is called the genesis block, and is generated manually or by some unique logic, in most cases.
+
+Implement a Proof of Work algorithm
+Selective endorsement vs. Proof of Work
+
+Consensus in a blockchain for business, as supported by the IBM Blockchain Platform, is not achieved through mining but through a process called selective endorsement. The network members control exactly who verifies transactions, much in the same way that business happens today. Learn more about blockchain for business.
+
+There's a problem, though. If we change the previous block, we can re-compute the hashes of all the following blocks quite easily and create a different valid blockchain. To prevent this, we must make the task of calculating the hash difficult and random.
+
+Here's how we do this. Instead of accepting any hash for the block, we add some constraint to it. Let's add a constraint that our hash should start with two leading zeroes. Also, we know that unless we change the contents of the block, the hash is not going to change.
+
+So we're going to introduce a new field in our block called nonce. A nonce is a number that we'll keep on changing until we get a hash that satisfies our constraint. The number of leading zeroes (the value 2, in our case) decides the "difficulty" of our Proof of Work algorithm. Also, you may notice that our Proof of Work is difficult to compute but easy to verify once we figure out the nonce (to verify, you just have to run the hash function again):
